@@ -17,12 +17,17 @@
     </style>
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript">
-        var currentItem = $(document).ready(function () {
-            $('#selectedItemName').load('/myapp/shop/items #currentItem');
+//        $(document).ready(function () {
+//            $('#itemName').load('$item')
+//
+//        });
+//        var toAlert = $('#selectedItemName').html();
 
-        });
-        var toAlert = get('#selectedItemName')
-        alert(toAlert);
+        function item() {
+            alert("$item: " +  $item);
+
+        }
+
     </script>
 </head>
 <body bgcolor="#ffe2bb">
@@ -36,12 +41,12 @@
  <div>
     <table name="itemsBasket" id="itemsBasket">
         <tr>
-            <th>Item Name</th>
+            <th onclick="item(this)">Item Name</th>
             <th>Count item</th>
             <th>Price</th>
         </tr>
-        <tr>
-            <td id="itemName"></td>
+        <tr class="items">
+            <td  id="itemName" onclick="item(this)"> </td>
             <td id="countItem"></td>
             <td id="priceItem"></td>
         </tr>

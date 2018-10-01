@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>My app</title>
+
+    <style>
+        a {
+            margin: 0 100px;
+        }
+    </style>
+
 </head>
 <body bgcolor="#afeeee">
 <!-- header -->
-<div>
-    <h1>Super app!</h1>
+<div style="text-align: center">
+    <h1 style=" color: maroon">HOME PAGE</h1>
 </div>
 
 <div>       <!-- content -->
-    <div>    <!-- buttons holder -->
-        <button onclick="location.href='/myapp/shop'">Shop</button>
-        <button onclick="location.href='/myapp/shop/basket'">Basket</button>
-        <button onclick="location.href='/myapp/shop/items'">All Items</button>
+    <div align="center" >    <!-- buttons holder -->
+        <!--<button onclick="location.href='/myapp/shop'">Shop</button>-->
+        <!--<button onclick="location.href='/myapp/shop/basket'">Basket</button>-->
+        <!--<button onclick="location.href='/myapp/shop/items'">All Items</button>-->
+        <h2><a href="/myapp/shop"> SHOP</a>
+            <a href="/myapp/shop/basket" > BASKET </a>
+            <a href="/myapp/shop/items"> ITEMS</a></h2>
 
     </div>
 </div>

@@ -20,6 +20,18 @@
 //
 //            });
         });
+
+        $('#shopForm').submit(function () {
+            $.ajax({
+                type:"POST",
+                url: "/myapp/shop/basket",
+                data: $('\\/myapp\\/shop/items #currentItem').val(),
+                success: function (html) {
+                    $('?/myapp/shop/basket .items').html(html);
+                }
+            });
+            return false;
+        });
     </script>
 
 
@@ -28,11 +40,13 @@
 <!-- header -->
 <div>
     <h1>SHOP</h1>
+    <form id="shopForm">
     <div id="block1"></div>
 
     <aside>
         <div id="blockBasket"></div>
     </aside>
+    </form>
 </div>
 
 </body>
