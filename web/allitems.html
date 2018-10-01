@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Items</title>
+    <style>
+        table {
+            width: 100%; /* Ширина таблицы */
+            background: white; /* Цвет фона таблицы */
+            color: white; /* Цвет текста */
+            border-spacing: 1px; /* Расстояние между ячейками */
+        }
+
+        td, th {
+            background: maroon; /* Цвет фона ячеек */
+            padding: 5px; /* Поля вокруг текста */
+        }
+    </style>
+
+    <script type="text/javascript">
+        //        function addNewRow() {
+        //
+        //
+        //            var y = document.getElementById("countItem").value;
+        //             if ((isNaN(y))) {
+        //                alert("Wrong Value 'Count item' Entered");
+        //            }
+        //            else {
+        //                var itemName = document.getElementById("itemName").value;
+        //                var countItem = document.getElementById("countItem").value;
+        //                var price = document.getElementById("price").value;
+        //
+        //                var table = document.getElementsByTagName('table')[0];
+        //
+        //                var newRow = table.insertRow(table.rows.length);
+        //                var cel1 = newRow.insertCell(0);
+        //                var cel2 = newRow.insertCell(1);
+        //                var cel3 = newRow.insertCell(2);
+        //
+        //                cel1.innerHTML = itemName;
+        //                cel2.innerHTML = countItem;
+        //                cel3.innerHTML = price;
+        //
+        //            }
+        //        }
+
+        //        function addToBasket() {
+        //            var itemName = document.getElementById("itemName").value;
+        //            var articleDiv = document.querySelector("#block11");
+        //alert(" создаем элемент")
+        //            var elem = document.createElement("h2");
+        //// создаем для него текст
+        //            var elemText = document.createTextNode(itemName);
+        //// добавляем текст в элемент в качестве дочернего элемента
+        //            elem.appendChild(elemText);
+        //// добавляем элемент в блок div
+        //            articleDiv.appendChild(elem);
+
+        function f(element) {
+            var item = element.innerHTML;
+//                alert('CLICK  ' + element.innerHTML);
+            var div = document.createElement('div');
+            div.className = "alert alert-success";
+            div.innerHTML = "<strong> Item   </strong> " + item;
+            var parentElem = document.getElementById('toBasket');
+            parentElem.style.visibility = "visible";
+            parentElem.appendChild(div);
+            $(document).ready(function () {
+                    document.getElementById('currentItem').innerHTML = item;
+            });
+        }
+
+    </script>
+</head>
+<body bgcolor="maroon" text="white">
+<div id="currentItem"></div>
+<div id="block11">
+
+    <table name="itemstable" id="itemstable">
+        <tr>
+            <th>Item Name</th>
+            <th>Count item</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td id="itemsName" onclick="f(this)">Spoon</td>
+            <td>20</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td onclick="f(this)">Fork</td>
+            <td>20</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td onclick="f(this)">Knife</td>
+            <td>20</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td onclick="f(this)">Plate</td>
+            <td>20</td>
+            <td>20</td>
+        </tr>
+    </table>
+
+</div>
+<aside>
+    <div id="addItem"></div>
+    <!--<br />-->
+    <!--<label id="labelIN">Item name:-->
+    <!--<input type="text" name="itemName" id="itemName">-->
+    <!--</label>-->
+    <!--<label>Count Item:-->
+    <!--<input type="text" name="countItem" id="countItem">-->
+    <!--</label>-->
+    <!--<label>Price:-->
+    <!--<input type="text" name="price" id="price"><br /><br />-->
+    <!--</label>-->
+    <!--</div>-->
+    <!--<button type="button" onclick="addNewRow();">Add item</button>-->
+    <!--</form>-->
+
+    <div id="toBasket" style="visibility: hidden">
+        <label>To basket:</label>
+    </div>
+</aside>
+</body>
+
+</html>
