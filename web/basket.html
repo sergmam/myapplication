@@ -10,50 +10,94 @@
             color: black; /* Цвет текста */
             border-spacing: 1px; /* Расстояние между ячейками */
         }
+
         td, th {
             background: #ffe2bb; /* Цвет фона ячеек */
             padding: 5px; /* Поля вокруг текста */
         }
     </style>
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript">
-//        $(document).ready(function () {
-//            $('#itemName').load('$item')
-//
-//        });
-//        var toAlert = $('#selectedItemName').html();
-
-        function item() {
-            alert("$item: " +  $item);
-
-        }
-
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body bgcolor="#ffe2bb">
- <header>
+<header>
+    <div>
+        <h1>Basket</h1>
+    </div>
+</header>
 <div>
-    <h1>Basket</h1>
+    <label id="addToBasket" onclick="item()">Add to basket</label><br>
 </div>
- </header>
-
- <div id="selectedItemName"></div>
- <div>
-    <table name="itemsBasket" id="itemsBasket">
-        <tr>
-            <th onclick="item(this)">Item Name</th>
-            <th>Count item</th>
-            <th>Price</th>
-        </tr>
-        <tr class="items">
-            <td  id="itemName" onclick="item(this)"> </td>
-            <td id="countItem"></td>
-            <td id="priceItem"></td>
-        </tr>
-    </table>
-</div>
-
-
+<div id="selectedItemName"></div>
+<form>
+    <div>
+        <table name="itemsBasket" id="itemsBasket">
+            <tr>
+                <th>Item Name</th>
+                <th>Count item</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            <tr class="itemsRow" id="itemsRow" style="visibility: hidden">
+                <td id="itemName"></td>
+                <td id="countItem"></td>
+                <td id="priceItem"></td>
+                <td id="delete"><a class="delRow">Delete</a></td>
+            </tr>
+        </table><br/>
+    </div>
+    <input type="submit">
+</form>
 
 </body>
+
 </html>
+<script type="text/javascript">
+    //    $(document).ready(function () {
+    //        //            $('#itemName').load('$item')
+    //        var tRows = $('#itemsBasket').length;
+    //        alert("tRows " + tRows);
+    //        //        $('#itemsBasket').rows[1].cells[0].appendChild($item);
+    //    });
+    //        var toAlert = $('#selectedItemName').html();
+
+    $addRow = false;
+    function item() {
+//            $(document).ready(function () {
+//                $selectRow = $('.items').load('/myapp/shop/items #itemName');
+//
+//            });
+//            alert("$item: " +  $item + "  $selecyRow: " + $selectRow );
+//            Послать данные формы, используя Ajax-запрос типа POST.
+
+//            $('#itemsBasket').insertRow(-1);
+//            $('#itemName').append($item);
+//
+//        }
+//            var x=document.getElementById('#itemsBasket').rows[0].cells;
+//            x[0].innerHTML="Теперь тут Говно";
+        document.getElementById('itemsRow').style.visibility = 'visible';
+//        alert("$item " + $item)
+        var t = $('#itemsBasket');
+        t.find('tr')
+            .eq(1)
+            .clone()
+            .appendTo(t)
+            .find('td:last')
+            //            .append('<a class="delRow">Delete</a>')
+            .end();
+////                .find('input')
+////                .val('');
+        var cLength = document.getElementById("itemsBasket").rows[1].cells.length;
+        document.getElementById("itemsBasket").rows[1].cells[0].innerHTML = $item;
+//        document.getElementById("itemsBasket").rows[1].cells[cLength-1].innerHTML='<a class="delRow">Delete</a>';
+//        alert("x " + x);
+
+    };
+
+
+    $('#itemsBasket').on('click', 'a.delRow', function () {
+        $(this).closest('tr').remove();
+    });
+
+
+</script>
