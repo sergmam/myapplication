@@ -25,7 +25,7 @@
     </div>
 </header>
 <div>
-    <label id="addToBasket" onclick="item()">Add to basket</label><br>
+    <label id="addToBasket" onclick="item() "></label><br>
 </div>
 <div id="selectedItemName"></div>
 <form>
@@ -43,7 +43,8 @@
                 <td id="priceItem"></td>
                 <td id="delete"><a class="delRow">Delete</a></td>
             </tr>
-        </table><br/>
+        </table>
+        <br/>
     </div>
     <input type="submit">
 </form>
@@ -59,6 +60,15 @@
     //        //        $('#itemsBasket').rows[1].cells[0].appendChild($item);
     //    });
     //        var toAlert = $('#selectedItemName').html();
+
+        if (typeof($item) !== "undefined" ) {
+            document.getElementById('addToBasket').value = 'Add to basket: ' + $item;
+        } else {
+            var label = document.getElementById('addToBasket');
+
+            label.innerHTML = " ";
+        }
+
 
     $addRow = false;
     function item() {
@@ -89,6 +99,14 @@
 ////                .val('');
         var cLength = document.getElementById("itemsBasket").rows[1].cells.length;
         document.getElementById("itemsBasket").rows[1].cells[0].innerHTML = $item;
+        var rowsCount = document.getElementById("itemsBasket").rows.length;
+        var lastTd = document.getElementById("itemsBasket").rows[rowsCount - 1].cells[0].innerHTML;
+        alert(rowsCount + " - rowsCount   " + lastTd + " - lastTd");
+        if (lastTd === '') {
+            alert(true);
+            document.getElementById("itemsBasket").rows[rowsCount - 1].remove();
+
+        }
 //        document.getElementById("itemsBasket").rows[1].cells[cLength-1].innerHTML='<a class="delRow">Delete</a>';
 //        alert("x " + x);
 
