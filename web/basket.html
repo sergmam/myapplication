@@ -19,36 +19,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body bgcolor="#ffe2bb">
-<header>
+<div id="bodyBasket" style="visibility: hidden">
+    <header>
+
+    </header>
     <div>
         <h1>Basket</h1>
     </div>
-</header>
-<div>
-    <label id="addToBasket" onclick="item() "></label><br>
+    <form>
+        <div>
+            <table name="itemsBasket" id="itemsBasket">
+                <tr>
+                    <th>Item Name</th>
+                    <th>Count item to buy</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+                <tr class="itemsRow" id="itemsRow">
+                    <td id="itemName"></td>
+                    <td id="countItemToBuy"><select id="selCountItemToBuy">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select></td>
+                    <td id="priceItem"></td>
+                    <td id="delete"><a class="delRow">Delete</a></td>
+                </tr>
+            </table>
+            <br/>
+        </div>
+        <input type="button" value="Submit" id="basketButton"/>
+    </form>
 </div>
-<div id="selectedItemName"></div>
-<form>
-    <div>
-        <table name="itemsBasket" id="itemsBasket">
-            <tr>
-                <th>Item Name</th>
-                <th>Count item</th>
-                <th>Price</th>
-                <th></th>
-            </tr>
-            <tr class="itemsRow" id="itemsRow" style="visibility: hidden">
-                <td id="itemName"></td>
-                <td id="countItem"></td>
-                <td id="priceItem"></td>
-                <td id="delete"><a class="delRow">Delete</a></td>
-            </tr>
-        </table>
-        <br/>
-    </div>
-    <input type="submit">
-</form>
-
 </body>
 
 </html>
@@ -60,62 +62,69 @@
     //        //        $('#itemsBasket').rows[1].cells[0].appendChild($item);
     //    });
     //        var toAlert = $('#selectedItemName').html();
+    //    function setVisibleBasket() {
+    //        document.getElementById('bodyBasket').style.visibility = 'visible';
+    //    }
 
-        if (typeof($item) !== "undefined" ) {
-            document.getElementById('addToBasket').value = 'Add to basket: ' + $item;
-        } else {
-            var label = document.getElementById('addToBasket');
-
-            label.innerHTML = " ";
-        }
-
-
-    $addRow = false;
-    function item() {
-//            $(document).ready(function () {
-//                $selectRow = $('.items').load('/myapp/shop/items #itemName');
-//
-//            });
-//            alert("$item: " +  $item + "  $selecyRow: " + $selectRow );
-//            Послать данные формы, используя Ajax-запрос типа POST.
-
-//            $('#itemsBasket').insertRow(-1);
-//            $('#itemName').append($item);
-//
-//        }
-//            var x=document.getElementById('#itemsBasket').rows[0].cells;
-//            x[0].innerHTML="Теперь тут Говно";
-        document.getElementById('itemsRow').style.visibility = 'visible';
-//        alert("$item " + $item)
-        var t = $('#itemsBasket');
-        t.find('tr')
-            .eq(1)
-            .clone()
-            .appendTo(t)
-            .find('td:last')
-            //            .append('<a class="delRow">Delete</a>')
-            .end();
-////                .find('input')
-////                .val('');
-        var cLength = document.getElementById("itemsBasket").rows[1].cells.length;
-        document.getElementById("itemsBasket").rows[1].cells[0].innerHTML = $item;
-        var rowsCount = document.getElementById("itemsBasket").rows.length;
-        var lastTd = document.getElementById("itemsBasket").rows[rowsCount - 1].cells[0].innerHTML;
-        alert(rowsCount + " - rowsCount   " + lastTd + " - lastTd");
-        if (lastTd === '') {
-            alert(true);
-            document.getElementById("itemsBasket").rows[rowsCount - 1].remove();
-
-        }
-//        document.getElementById("itemsBasket").rows[1].cells[cLength-1].innerHTML='<a class="delRow">Delete</a>';
-//        alert("x " + x);
-
-    };
-
+    //    $addRow = false;
+    //    function item() {
+    //
+    ////        alert("$item " + $item)
+    //        var t = $('#itemsBasket');
+    //        t.find('tr')
+    //            .eq(1)
+    //            .clone()
+    //            .appendTo(t)
+    //            .find('td:last')
+    //            //            .append('<a class="delRow">Delete</a>')
+    //            .end();
+    //////                .find('input')
+    //////                .val('');
+    ////        var cLength = document.getElementById("itemsBasket").rows[1].cells.length;
+    //        document.getElementById("itemsBasket").rows[1].cells[0].innerHTML = $item;
+    //        var rowsCount = document.getElementById("itemsBasket").rows.length;
+    //        var lastTd = document.getElementById("itemsBasket").rows[rowsCount - 1].cells[0].innerHTML;
+    ////        alert(rowsCount + " - rowsCount   " + lastTd + " - lastTd");
+    //        if (lastTd === '') {
+    ////            alert(true);
+    //            document.getElementById("itemsBasket").rows[rowsCount - 1].remove();
+    //        }
+    //        document.getElementById("bodyBasket").style.visibility = 'visible';
+    //    };
+    //
 
     $('#itemsBasket').on('click', 'a.delRow', function () {
-        $(this).closest('tr').remove();
+        var rowsCount = document.getElementById("itemsBasket").rows.length;
+//        alert(rowsCount);
+        if (rowsCount > 2) {
+            $(this).closest('tr').remove();
+        } else {
+            document.getElementById("itemsBasket").rows[1].cells[0].innerHTML = ('');
+        }
     });
 
-
+    $(function () {
+        $("#basketButton").click(function () {
+            var serializedData = $("dfdfd").serialize();
+            alert(serializedData);
+            $.ajax({
+                type: "POST",
+                url: '/myapp/buyService',
+                data: serializedData,
+                contentType: "charset=UTF-8",
+                success: function (response) {
+                    console.log("Success", +response.statusCode);
+                },
+                statusCode: {
+                    201: function () {
+                        var url = "/myapp/shop/success";
+                        $(location).attr('href', url);
+                    }
+                },
+                error: function (e) {
+                    console.log("Server error - " + e);
+                }
+            });
+        });
+    });
 </script>

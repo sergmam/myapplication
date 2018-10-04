@@ -22,11 +22,11 @@ public class ShopServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/shop.html");
         requestDispatcher.forward(req, resp);    }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String itemName = req.getParameter("itemName");
-        String countItem = req.getParameter("countItem");
-        Item item = new Item(itemName, countItem);
-        Items items = Items.getInstance();
-        items.add(item);    }
+//    @Override
+//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        String itemName = req.getParameter("itemName");
+//        String countItem = req.getParameter("countItem");
+//        Item item = new Item(itemName, countItem);
+//        Items items = Items.getInstance();
+//        items.add(item);    }
 }

@@ -6,32 +6,10 @@
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-//                    $.get('http://localhost:8080/myapp/shop/items', function (data) {
-//                    $('#block1').html( $('#itemstable', data).html() )
-//                });
             $('#block1').load('/myapp/shop/items');
             $('#blockBasket').load('/myapp/shop/basket');
-//            $('?/myapp/shop/basket #itemName').load('/myapp/shop/items #currentItem');
-
-//            $('body').on('click', '#block1', function() {
-//                var msg = $(this).val();
-//
-//                alert("CLICK! Get " + msg)
-//
-//            });
         });
 
-        $('#shopForm').submit(function () {
-            $.ajax({
-                type:"POST",
-                url: "/myapp/shop/basket",
-                data: $('\\/myapp\\/shop/items #currentItem').val(),
-                success: function (html) {
-                    $('?/myapp/shop/basket .items').html(html);
-                }
-            });
-            return false;
-        });
     </script>
 
 
