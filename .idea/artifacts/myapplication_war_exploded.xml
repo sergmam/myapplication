@@ -1,13 +1,17 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="myapplication:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/myapplication_war_exploded</output-path>
+    <output-path>$PROJECT_DIR$/classes/artifacts/myapplication_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="myapplication/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="myapplication" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.jwall:stream-api:0.9.10" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.8.0-beta2" />
+        </element>
       </element>
+      <element id="javaee-facet-resources" facet="myapplication/web/Web" />
     </root>
   </artifact>
 </component>

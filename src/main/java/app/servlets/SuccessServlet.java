@@ -14,6 +14,7 @@ import java.io.IOException;
 public class SuccessServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.getOutputStream().println();
         req.getRequestDispatcher("/success.html").forward(req, resp);
     }
 }
