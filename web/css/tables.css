@@ -1,0 +1,11 @@
+table {
+    width: 100%; /* Ширина таблицы */
+    background: darkblue; /* Цвет фона таблицы */
+    color: darkblue; /* Цвет текста */
+    border-spacing: 1px; /* Расстояние между ячейками */
+}
+
+td, th {
+    background: #ffe2bb; /* Цвет фона ячеек */
+    padding: 5px; /* Поля вокруг текста */
+}

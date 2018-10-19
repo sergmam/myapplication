@@ -3,84 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Basket</title>
-    <style>
-        table {
-            width: 100%; /* Ширина таблицы */
-            background: white; /* Цвет фона таблицы */
-            color: black; /* Цвет текста */
-            border-spacing: 1px; /* Расстояние между ячейками */
-        }
+    <link rel="stylesheet" type="text/css" href="/css/tables.css">
+    <link rel="stylesheet" type="text/css" href="/css/body.css">
 
-        td, th {
-            background: #ffe2bb; /* Цвет фона ячеек */
-            padding: 5px; /* Поля вокруг текста */
-        }
-    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript">
-
-        $('#itemsBasket').on('click', 'a.delRow', function () {
-            var rowsCount = document.getElementById("itemsBasket").rows.length;
-//        alert(rowsCount);
-            if (rowsCount > 2) {
-                $(this).closest('tr').remove();
-            } else {
-                document.getElementById("itemsBasket").rows[1].cells[0].innerHTML = ('');
-            }
-        });
-
-        $(function () {
-            $("#basketButton").click(function () {
-                var serializedData = $('#itemsBasket tr').serialize();
-//            alert(serializedData);
-                $.ajax({
-                    type: "POST",
-                    url: "/myapp/buyService",
-                    data: serializedData,
-                    contentType: "charset=UTF-8",
-                    success: function (response) {
-                        console.log("Success", +response.statusCode);
-                    },
-                    statusCode: {
-                        201: function () {
-                            var url = "/myapp/shop/success";
-                            $(location).attr('href', url);
-
-                            var xhr = new XMLHttpRequest();
-
-                            xhr.open('GET', '/myapp/buyService', true);
-
-                            xhr.send();
-
-                            xhr.onreadystatechange = function() {
-                                if (this.readyState != 4) return;
-
-                                // по окончании запроса доступны:
-                                // status, statusText
-                                // responseText, responseXML (при content-type: text/xml)
-
-                                if (this.status != 200) {
-                                    // обработать ошибку
-                                    alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
-                                    return;
-                                }
-
-                                alert(this.responseXML);
-                                // получить результат из this.responseText или this.responseXML
-                            }
-                        }
-                    },
-                    error: function (e) {
-                        console.log("Server error - " + e);
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="/js/basket.js"></script>
 
 </head>
-<body bgcolor="#ffe2bb">
-<div id="bodyBasket" style="visibility: hidden">
+<body>
+<div id="bodyBasket" style="visibility: visible">
     <header>
 
     </header>
@@ -104,7 +35,7 @@
                         <option>3</option>
                     </select></td>
                     <td id="priceItem"></td>
-                    <td id="delete"><a class="delRow">Delete</a></td>
+                    <td id="delete"><a class="delRow" onclick="delRow(this)">Delete</a></td>
                 </tr>
             </table>
             <br/>

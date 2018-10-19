@@ -3,65 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Items</title>
-    <style>
-        table {
-            width: 100%; /* Ширина таблицы */
-            background: darkblue; /* Цвет фона таблицы */
-            color: darkblue; /* Цвет текста */
-            border-spacing: 1px; /* Расстояние между ячейками */
-        }
+    <link rel="stylesheet" type="text/css" href="/css/tables.css">
+    <link rel="stylesheet" type="text/css" href="/css/body.css">
 
-        td, th {
-            background: #ffe2bb; /* Цвет фона ячеек */
-            padding: 5px; /* Поля вокруг текста */
-        }
-    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script type="text/javascript">
+    <script src="/js/allitems.js"></script>
 
-        function f(element) {
-            $item = element.innerHTML;
-
-            if (typeof($item) !== "undefined") {
-                document.getElementById('addToBasket').innerHTML = 'Add to basket: ' + $item;
-            } else {
-                var label = document.getElementById('addToBasket');
-
-                label.innerHTML = "undefined ";
-            }
-        }
-
-
-        $addRow = false;
-        function item() {
-
-//        alert("$item " + $item)
-            var t = $('#itemsBasket');
-            t.find('tr')
-                .eq(1)
-                .clone()
-                .appendTo(t)
-                .find('td:last')
-                //            .append('<a class="delRow">Delete</a>')
-                .end();
-////                .find('input')
-////                .val('');
-            document.getElementById("itemsBasket").rows[1].cells[0].innerHTML = $item;
-            var rowsCount = document.getElementById("itemsBasket").rows.length;
-            var lastTd = document.getElementById("itemsBasket").rows[rowsCount - 1].cells[0].innerHTML;
-            if (lastTd === '') {
-                console.log(true);
-                 document.getElementById("itemsBasket").rows[rowsCount - 1].remove();
-            }
-            document.getElementById("bodyBasket").style.visibility = 'visible';
-        };
-
-
-
-    </script>
 </head>
-<body bgcolor="#ffe2bb" text="white">
-<!--<div id="currentItem"></div>-->
+
+<body>
+
 <div id="block11">
 
     <table name="itemstable" id="itemstable">
@@ -95,14 +46,9 @@
 </div>
 
 <aside>
-    <!--<div id="addItem"></div>-->
     <div>
-        <br/><label id="addToBasket" onclick="item()"></label>
+        <br/><label id="addToBasket"></label>
     </div>
-
-    <!--<div id="toBasket" style="visibility: hidden">-->
-    <!--<label>To basket:</label>-->
-    <!--</div>-->
 </aside>
 </body>
 
