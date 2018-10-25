@@ -1,6 +1,8 @@
-requirejs([
-    "script"
-], function(script) {
-    //you code stuff is here
-    //example.callFunction();
+require(['loadItems'], function () {
+    require(['selectItem'], function () {
+    });
+});
+
+require(['addToBasket'], function () {
+    console.log('addToBasket in main');
 });
